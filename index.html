@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="user">
+  <head>
+    <title>Simple AngularJS Test</title>
+    <link rel="stylesheet" href="res/css/foundation.min.css" type="text/css" />
+    <link rel="stylesheet" href="res/css/main.css" type="text/css" />
+
+    <meta charset="utf-8" />
+
+  </head>
+
+  <body>
+
+    <div ng-controller="UserCtrl as user" class="row">
+      <h1>Simple AngularJS Test</h1>
+
+      <div class="panel radius columns large-6">
+        <h2>Input</h2>
+
+        <form data-abide ng-submit="userNameSubmit()" method="" id="" action="">
+          <label for="user-name-input">Your name</label>
+          <input ng-model="userName" required pattern="[a-zA-Z0-9]+" type="text" name="user-name-input" placeholder="John Doe"/>
+          <input type="submit" class="button small" name="" value="Set" />
+        </form>
+      </div>
+      <div class="columns large-6">
+        <h2>Output</h2>
+        <div data-alert ng-show="userHasSubmitted" class="alert-box success radius">
+          {{successMessage}}
+          <a href="#" class="close">&times;</a>
+        </div>
+        <p>Hello {{userName}}!</p>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <h2>Settings</h2>
+      <a href="#/settings">Info</a>
+      <div ng-view></div>
+    </div>
+
+    <script type="text/javascript" src="res/js/angular.min.js"></script>
+    <script type="text/javascript" src="res/js/angular-route.js"></script>
+    <script type="text/javascript" src="res/js/user.js"></script>
+    <script type="text/javascript" src="res/js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="res/js/foundation.min.js"></script>
+    <script type="text/javascript" src="res/js/foundation.abide.js"></script>
+    <script type="text/javascript" src="res/js/foundation.tooltip.js"></script>
+  </body>
+</html>
