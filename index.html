@@ -5,6 +5,9 @@
     <link rel="stylesheet" href="res/css/foundation.min.css" type="text/css" />
     <link rel="stylesheet" href="res/css/main.css" type="text/css" />
 
+    <script type="text/javascript" src="res/js/angular.min.js"></script>
+    <script type="text/javascript" src="res/js/angular-route.js"></script>
+
     <meta charset="utf-8" />
 
   </head>
@@ -12,37 +15,49 @@
   <body>
 
     <div ng-controller="UserCtrl as user" class="row">
+
       <h1>Simple AngularJS Test</h1>
 
       <div class="panel radius columns large-6">
         <h2>Input</h2>
 
-        <form data-abide ng-submit="userNameSubmit()" method="" id="" action="">
+        <form data-abide ng-submit="user.userNameSubmit()" method="" id="" action="">
           <label for="user-name-input">Your name</label>
-          <input ng-model="userName" required pattern="[a-zA-Z0-9]+" type="text" name="user-name-input" placeholder="John Doe"/>
+          <input ng-model="user.userName" required pattern="[a-zA-Z0-9]+" type="text" name="user-name-input" placeholder="John Doe"/>
           <input type="submit" class="button small" name="" value="Set" />
         </form>
       </div>
       <div class="columns large-6">
         <h2>Output</h2>
-        <div data-alert ng-show="userHasSubmitted" class="alert-box success radius">
-          {{successMessage}}
-          <a href="#" class="close">&times;</a>
+        <div data-alert ng-cloak ng-show="user.userHasSubmitted" ng-bind-template="{{user.successMessage}}" class="alert-box {{user.messageType}} radius">
+          <!-- <a href="#" class="close">&times;</a> -->
         </div>
-        <p>Hello {{userName}}!</p>
+        <p ng-cloak>Hello {{user.userName}}!</p>
 
       </div>
     </div>
 
+    <div ng-controller="colorCtrl as cctrl" class="row">
+      <h2>Colors</h2>
+      <a ng-click="cctrl.retrieveColors()" href="" class="button small secondary">Retrieve colors</a>
+      <ul class="inline-list">
+        <li ng-cloak ng-repeat="color in cctrl.colors" style="background-color:{{color}};">{{color}}</li>
+      </ul>
+    </div>
+
     <div class="row">
-      <h2>Settings</h2>
-      <a href="#/settings">Info</a>
+      <h2>Routing</h2>
+      <ul class="button-group radius">
+        <li><a class="button small secondary" href="#/settings">Settings</a></li>
+        <li><a class="button small secondary" href="#/info/1">Info #1</a></li>
+        <li><a class="button small secondary" href="#/info/2">Info #2</a></li>
+        <li><a class="button small secondary" href="#/info/3">Info #3</a></li>
+      </ul>
       <div ng-view></div>
     </div>
 
-    <script type="text/javascript" src="res/js/angular.min.js"></script>
-    <script type="text/javascript" src="res/js/angular-route.js"></script>
     <script type="text/javascript" src="res/js/user.js"></script>
+    <script type="text/javascript" src="res/js/infos.js"></script>
     <script type="text/javascript" src="res/js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="res/js/foundation.min.js"></script>
     <script type="text/javascript" src="res/js/foundation.abide.js"></script>
