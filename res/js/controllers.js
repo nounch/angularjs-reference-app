@@ -1,4 +1,4 @@
-angular.module('user', ['ngRoute', 'infos'])
+angular.module('user', ['ngRoute', 'infos', 'confidenceFilters'])
   .config(function($routeProvider) {
     $routeProvider
       .when('/settings', {
@@ -49,13 +49,35 @@ angular.module('user', ['ngRoute', 'infos'])
     var self = this;
     this.colors = [];
     this.retrieveColors = function() {
-      var jsonData;
       $http.get('res/json/colors.json').success(function(data) {
         var keys = Object.keys(data);
         for (var i = 0; i < keys.length; i++) {
           self.colors[i] = data[keys[i]];
         }
       });
+    };
+
+    this.selectedColor = '#FFFFFF';
+    this.selectColor = function(color) {
+      console.log('SELECTING COLOR: ' + color);  // DEBUG
+      this.selectedColor = color;
+    };
+
+    // Attach to scope since the `animalSearchFilter' needs to be able to
+    // read this.
+    this.includeConfidenceInAnimalSearch = true;
+    this.animals = [];
+    this.retrieveAnimals = function() {
+      $http.get('res/json/animals.json').success(function(data) {
+        var keys = Object.keys(data);
+        var animalName;
+        for (var i = 0; i < keys.length; i++) {
+          animalName = keys[i];
+          self.animals[i] = {};
+          self.animals[i]['name'] = animalName
+          self.animals[i]['confidence'] = data[animalName];
+        }
+      })
     };
   }])
 ;

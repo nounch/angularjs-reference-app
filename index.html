@@ -38,11 +38,33 @@
     </div>
 
     <div ng-controller="colorCtrl as cctrl" class="row">
-      <h2>Colors</h2>
-      <a ng-click="cctrl.retrieveColors()" href="" class="button small secondary">Retrieve colors</a>
-      <ul class="inline-list">
-        <li ng-cloak ng-repeat="color in cctrl.colors" style="background-color:{{color}};">{{color}}</li>
-      </ul>
+      <div style="background-color: {{cctrl.selectedColor}};" class="columns large-6">
+        <h2>Colors</h2>
+        <a ng-click="cctrl.retrieveColors()" href="" class="button small secondary">Retrieve colors</a>
+        <ul class="inline-list">
+          <li ng-cloak ng-repeat="color in cctrl.colors" ng-click="cctrl.selectColor(color)" style="background-color:{{color}};"><a href="">{{color}}</a></li>
+        </ul>
+      </div>
+      <div class="columns large-6">
+        <h2>Animals</h2>
+        <a ng-click="cctrl.retrieveAnimals()" href="" class="button small secondary">Retrieve animals</a>
+
+        <div ng-cloak ng-show="cctrl.animals.length > 0" class="row">
+          <div class="large-7 columns">
+            <input type="text" ng-model="cctrl.animalSortOrder" name="" value="" placeholder="Animal name or confidence"/>
+          </div>
+          <div class="large-5 columns">
+            <label for="animal-search-confidence-checkbox">
+              <input ng-model="cctrl.includeConfidenceInAnimalSearch" type="checkbox" id="animal-search-confidence-checkbox" name="" value="">
+              <span class="">Search confidence</span>
+            </label>
+          </div>
+        </div>
+
+        <ul>
+          <li ng-cloak ng-repeat="animal in cctrl.animals | animalSearch:cctrl.animalSortOrder:cctrl.includeConfidenceInAnimalSearch">{{animal.name}}: {{animal.confidence | confidence}}</li>
+        </ul>
+      </div>
     </div>
 
     <div class="row">
@@ -56,8 +78,9 @@
       <div ng-view></div>
     </div>
 
-    <script type="text/javascript" src="res/js/user.js"></script>
+    <script type="text/javascript" src="res/js/controllers.js"></script>
     <script type="text/javascript" src="res/js/infos.js"></script>
+    <script type="text/javascript" src="res/js/filters.js"></script>
     <script type="text/javascript" src="res/js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="res/js/foundation.min.js"></script>
     <script type="text/javascript" src="res/js/foundation.abide.js"></script>
