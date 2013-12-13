@@ -1,4 +1,5 @@
-angular.module('user', ['ngRoute', 'infos', 'confidenceFilters'])
+angular.module('user', ['ngRoute', 'infos', 'diverseService',
+                        'confidenceFilters',])
   .config(function($routeProvider) {
     $routeProvider
       .when('/settings', {
@@ -80,4 +81,40 @@ angular.module('user', ['ngRoute', 'infos', 'confidenceFilters'])
       })
     };
   }])
-;
+  .controller('diverseCtrl', ['$scope', 'Diverse', function($scope,
+                                                            Diverse) {
+    var self = this;
+    this.diverse = Diverse.get({}, function(data) {
+      self.diverse = data.diverse;
+    });
+
+    // Inline Editor
+    // this.inlineEditorEnabled = false;
+    this.enabledEditors = {};
+    this.editableTexts = {};
+    this.editableTexts = {};
+    // Debugging
+    self.currentModel = null;
+    this.enableInlineEditor = function(text, id) {
+      self.enabledEditors[id] = true;
+      self.editableTexts[id] = text;
+      // Debugging
+      angular.forEach(self.diverse, function(item) {
+	if (item.id == id) {
+	  self.currentModel = item;
+	}
+      });
+    };
+    this.disableInlineEditor = function(id) {
+      self.enabledEditors[id] = false;
+    };
+    this.save = function(id) {
+      angular.forEach(self.diverse, function(item) {
+        // XXX: Inefficient. Use a different data structure.
+        if (item.id == id) {
+          item.name = self.editableTexts[id];
+        }
+      });
+      self.disableInlineEditor(id);
+    };
+  }]);

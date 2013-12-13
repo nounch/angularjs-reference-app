@@ -1,0 +1,92 @@
+{
+  "diverse": [
+    {
+      "id" : 0,
+      "married" : true,
+      "name" : "Jason Johnson",
+      "sons" : [],
+      "daughters" : [
+	{
+          "age" : 13,
+          "name" : "Michelle"
+	},
+	{
+          "age" : 24,
+          "name" : "Elizabeth"
+	}
+      ]
+    },
+    {
+      "id" : 1,
+      "married" : false,
+      "name" : "Daniel Allen",
+      "sons" : [],
+      "daughters" : [
+	{
+          "age" : 30,
+          "name" : "Mary"
+	}
+      ]
+    },
+    {
+      "id" : 2,
+      "married" : true,
+      "name" : "Brian Johnson",
+      "sons" : [],
+      "daughters" : [
+      ]
+    },
+    {
+      "id" : 3,
+      "married" : false,
+      "name" : "Anthony Hall",
+      "sons" : [],
+      "daughters" : [
+	{
+          "age" : 15,
+          "name" : "Melissa"
+	},
+	{
+          "age" : 2,
+          "name" : "Karen"
+	},
+	{
+          "age" : 2,
+          "name" : "Carol"
+	}
+      ]
+    },
+    {
+      "id" : 4,
+      "married" : true,
+      "name" : "Jeffrey Hernandez",
+      "sons" : [],
+      "daughters" : [
+	{
+          "age" : 10,
+          "name" : "Anna"
+	},
+	{
+          "age" : 24,
+          "name" : "Brenda"
+	}
+      ]
+    },
+    {
+      "id" : 5,
+      "married" : true,
+      "name" : "Joseph Perez",
+      "sons" : [],
+      "daughters" : [
+      ]
+    },
+    {
+      "id" : 6,
+      "married" : true,
+      "name" : "Kevin White",
+      "sons" : [],
+      "daughters" : [
+      ]
+    }
+  ]
+}

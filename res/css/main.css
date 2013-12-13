@@ -1,0 +1,31 @@
+[contenteditable="true"]:focus {
+  background-color: #FEFEFE;
+  border: 1px solid #121212;
+  transition: ease-out all 250ms;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+
+/* Model code */
+
+.model-pre-container {
+  padding: 3px;
+  border-radius: 3px;
+  background: none repeat scroll 0 0 #EEEEEE;
+}
+
+.model-pre {
+  overflow: hidden;
+  min-height: 300px;
+  max-height: 300px;
+  padding: 15px;
+  background-color: #FFFFFF;
+  border: 1px solid #CACACA;
+}
+
+.model-pre:hover {
+  overflow: scroll;
+}
