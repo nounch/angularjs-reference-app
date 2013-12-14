@@ -1,4 +1,4 @@
-angular.module('user', ['ngRoute', 'infos', 'diverseService',
+angular.module('user', ['ngRoute', 'ngAnimate', 'infos', 'diverseService',
                         'confidenceFilters',])
   .config(function($routeProvider) {
     $routeProvider
@@ -60,7 +60,6 @@ angular.module('user', ['ngRoute', 'infos', 'diverseService',
 
     this.selectedColor = '#FFFFFF';
     this.selectColor = function(color) {
-      console.log('SELECTING COLOR: ' + color);  // DEBUG
       this.selectedColor = color;
     };
 
@@ -100,9 +99,9 @@ angular.module('user', ['ngRoute', 'infos', 'diverseService',
       self.editableTexts[id] = text;
       // Debugging
       angular.forEach(self.diverse, function(item) {
-	if (item.id == id) {
-	  self.currentModel = item;
-	}
+        if (item.id == id) {
+          self.currentModel = item;
+        }
       });
     };
     this.disableInlineEditor = function(id) {

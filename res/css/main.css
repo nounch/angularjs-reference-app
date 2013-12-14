@@ -1,3 +1,8 @@
+/*************************************************************************/
+/* Diverse */
+/*************************************************************************/
+
+
 [contenteditable="true"]:focus {
   background-color: #FEFEFE;
   border: 1px solid #121212;
@@ -28,4 +33,43 @@
 
 .model-pre:hover {
   overflow: scroll;
+}
+
+
+/*************************************************************************/
+/* Experimental Styling */
+/*************************************************************************/
+
+/* Global style */
+
+body > .row {
+  background-color: #FFFFFF;
+  border-top: 1px solid #CACACA;
+  margin-top: 5px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+body > .row > .columns[class*="large-6"] {
+  border-right: 1px solid #EEEEEE;
+}
+
+.columns[class*="large-6"] ~ .columns[class*="large-6"] {
+  border: none;
+}
+
+/* Routing box */
+
+body > .row:nth-child(3) {
+  background: none repeat scroll 0 0 #EEEEEE;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.row > .columns[class*="large-12"] {
+  background-color: #FFFFFF;
+  padding: 5px;
+  border: 1px solid #CACACA;
+  border-radius: 3px;
 }

@@ -1,0 +1,25 @@
+/*************************************************************************/
+/* AngularJS-Specific Animation */
+/*************************************************************************/
+
+/* .animated-item.ng-hide-add, */
+.animated-item.ng-hide-remove {
+  -webkit-transition: 0.2s linear all;
+  -moz-transition: 0.2s linear all;
+  -o-transition: 0.2s linear all;
+  transition: 0.2s linear all;
+  opacity: 0;
+  display: block !important;
+}
+
+.animated-item.ng-hide {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transition: 0.2s linear all;
+  opacity: 1;
+}
+
+/* .animated-item.ng-hide-remove-active, .animated-item.ng-hide-add-active { */
+/*   opacity: 1; */
+/* } */

@@ -4,10 +4,12 @@
     <title>Simple AngularJS Test</title>
     <link rel="stylesheet" href="res/css/foundation.min.css" type="text/css" />
     <link rel="stylesheet" href="res/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="res/css/ng-animation.css" type="text/css" />
 
     <script type="text/javascript" src="res/js/angular.min.js"></script>
     <script type="text/javascript" src="res/js/angular-route.js"></script>
     <script type="text/javascript" src="res/js/angular-resource.js"></script>
+    <script type="text/javascript" src="res/js/angular-animate.js"></script>
 
     <meta charset="utf-8" />
 
@@ -42,7 +44,7 @@
         <h2>Colors</h2>
         <a ng-click="cctrl.retrieveColors()" href="" class="button small secondary">Retrieve colors</a>
         <ul class="inline-list">
-          <li ng-cloak ng-repeat="color in cctrl.colors" ng-click="cctrl.selectColor(color)" style="background-color:{{color}};"><a href="">{{color}}</a></li>
+          <li ng-cloak ng-repeat="color in cctrl.colors" ng-click="cctrl.selectColor(color)" style="background-color:{{color}};" class="secondary round label"><a href="">{{color}}</a></li>
         </ul>
       </div>
       <div class="columns large-6">
@@ -68,20 +70,22 @@
     </div>
 
     <div class="row">
-      <h2>Routing</h2>
-      <ul class="button-group radius">
-        <li><a class="button small secondary" href="#/settings">Settings</a></li>
-        <li><a class="button small secondary" href="#/info/1">Info #1</a></li>
-        <li><a class="button small secondary" href="#/info/2">Info #2</a></li>
-        <li><a class="button small secondary" href="#/info/3">Info #3</a></li>
-      </ul>
-      <div ng-view></div>
+      <div class="columns large-12">
+        <h2>Routing</h2>
+        <ul class="button-group radius">
+          <li><a class="button small secondary" href="#/settings">Settings</a></li>
+          <li><a class="button small secondary" href="#/info/1">Info #1</a></li>
+          <li><a class="button small secondary" href="#/info/2">Info #2</a></li>
+          <li><a class="button small secondary" href="#/info/3">Info #3</a></li>
+        </ul>
+        <div ng-view></div>
+      </div>
     </div>
 
     <div ng-controller="diverseCtrl as dictrl" class="row">
       <h2>Resources</h2>
       <div class="columns large-6">
-	<h3>Editable</h3>
+        <h3>Editable</h3>
         <table>
           <tr>
             <th>ID</th>
@@ -94,7 +98,7 @@
             <td>{{diverse.id}}</td>
             <td>{{diverse.married}}</td>
             <td><div class="clickable" ng-show="!dictrl.enabledEditors[diverse.id]" ng-click="dictrl.enableInlineEditor(diverse.name, diverse.id)">{{diverse.name}}</div>
-              <div ng-show="dictrl.enabledEditors[diverse.id]">
+              <div class="animated-item" ng-show="dictrl.enabledEditors[diverse.id]">
                 <input ng-model="dictrl.editableTexts[diverse.id]" type="text" />
                 <a class="tiny button" href="#" ng-click="dictrl.save(diverse.id)">Save</a>
                 or
@@ -106,10 +110,10 @@
         </table>
       </div>
       <div class="columns large-6">
-	<h3>Model</h3>
-	<div class="model-pre-container">
-	  <pre class="model-pre">{{dictrl.currentModel | json}}</pre>
-	</div>
+        <h3>Model</h3>
+        <div class="model-pre-container">
+          <pre class="model-pre">{{dictrl.currentModel | json}}</pre>
+        </div>
       </div>
     </div>
 

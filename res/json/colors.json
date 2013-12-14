@@ -1,7 +1,8 @@
 {
-  "red": "#FF0000",
-  "green": "#00FF00",
-  "blue": "#0000FF",
-  "black": "#000000",
-  "white": "#FFFFFF"
+  "lightorange": "#FCD271",
+  "orange": "#F78D3F",
+  "blue": "#2BBBD8",
+  "darkblue": "#102E37",
+  "white": "#FFFFFF",
+  "lightgrey": "#F8EDE0"
 }
