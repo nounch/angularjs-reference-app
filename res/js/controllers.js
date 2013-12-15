@@ -135,7 +135,8 @@ angular.module('user', ['ngRoute', 'ngAnimate', 'infos', 'diverseService',
       'comment': ''
     };
 
+    this.showFlashMessage = false;
     this.submitCustomerData = function() {
-
+      self.showFlashMessage = true;
     };
   }]);

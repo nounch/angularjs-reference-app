@@ -119,8 +119,8 @@
 
     <div ng-controller="customerCtrl as cusctrl" class="row">
       <h2>Form validation</h2>
-      <form data-abide ng-submit="cusctrl.submitCustomerData()">
-        <div class="columns large-6">
+      <div class="columns large-6">
+        <form ng-hide="cusctrl.showFlashMessage" data-abide ng-submit="cusctrl.submitCustomerData()">
 
           <h3>Form</h3>
 
@@ -207,9 +207,15 @@
           </div>
 
           <input type="submit" class="button small secondary" name="" value="OK" />
-      </form>
+        </form>
+
+        <div id="customer-flash-message" ng-show="cusctrl.showFlashMessage" class="panel">
+          <p>Welcome, {{cusctrl.customer.firstName}} {{cusctrl.customer.lastName}}!</p>
+          <p>Your price cathegory: {{cusctrl.customer.priceCathegory}}</p>
+        </div>
 
       </div>
+
 
       <div class="columns large-6">
         <h3>Model</h3>

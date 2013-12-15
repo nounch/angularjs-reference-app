@@ -1,4 +1,20 @@
 /*************************************************************************/
+/* Customer flash message animation */
+/*************************************************************************/
+
+#customer-flash-message.ng-hide-add,
+#customer-flash-message.ng-hide-remove {
+  display: block !important;
+  animation: 0.6s ease-out customerFlashMessageAnimation;
+}
+
+@keyframes customerFlashMessageAnimation {
+  from { opacity: 0; }
+  to {  }
+}
+
+
+/*************************************************************************/
 /* Routing view animation */
 /*************************************************************************/
 
