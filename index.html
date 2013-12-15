@@ -57,7 +57,7 @@
           </div>
           <div class="large-5 columns">
             <label for="animal-search-confidence-checkbox">
-              <input ng-model="cctrl.includeConfidenceInAnimalSearch" type="checkbox" id="animal-search-confidence-checkbox" name="" value="">
+              <input ng-model="cctrl.includeConfidenceInAnimalSearch" type="checkbox" id="animal-search-confidence-checkbox" >
               <span class="">Search confidence</span>
             </label>
           </div>
@@ -78,7 +78,7 @@
           <li><a class="button small secondary" href="#/info/2">Info #2</a></li>
           <li><a class="button small secondary" href="#/info/3">Info #3</a></li>
         </ul>
-        <div ng-view></div>
+        <div ng-view class="view-frame"></div>
       </div>
     </div>
 
@@ -115,6 +115,111 @@
           <pre class="model-pre">{{dictrl.currentModel | json}}</pre>
         </div>
       </div>
+    </div>
+
+    <div ng-controller="customerCtrl as cusctrl" class="row">
+      <h2>Form validation</h2>
+      <form data-abide ng-submit="cusctrl.submitCustomerData()">
+        <div class="columns large-6">
+
+          <h3>Form</h3>
+
+          <div class="row">
+
+            <div class="columns large-6">
+              <label for="customer-first-name">First Name</label>
+              <input id="customer-first-name" type="text" ng-model="cusctrl.customer.firstName" pattern="[a-zA-Z0-9]+" required/>
+            </div>
+
+            <div class="columns large-6">
+              <label for="customer-last-name">Last Name</label>
+              <input id="customer-last-name" type="text" ng-model="cusctrl.customer.lastName" pattern="[a-zA-Z0-9]+" required/>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="columns large-4">
+              <label for="customer-company">Company</label>
+              <input id="customer-company" type="text" ng-model="cusctrl.customer.company" pattern="[a-zA-Z0-9]+" required/>
+            </div>
+
+            <div class="columns large-4">
+              <label for="customer-country">Country</label>
+              <input id="customer-country" type="text" ng-model="cusctrl.customer.country" pattern="[a-zA-Z0-9]+" required/>
+            </div>
+
+            <div class="columns large-4">
+              <label for="customer-phone">Phone</label>
+              <input id="customer-phone" type="text" ng-model="cusctrl.customer.phone" pattern="[0-9]+" required/>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="columns large-4">
+              <label for="customer-price-cathegory">Price Cathegory</label>
+              <select id="customer-price-cathegory" ng-model="cusctrl.customer.priceCathegory" required>
+                <option ng-repeat="priceCathegory in cusctrl.priceCathegories">{{priceCathegory}}</option>
+              </select>
+            </div>
+
+            <div class="columns large-6">
+
+              <div class="row">
+                <label for="customer-get-weekly-updates">
+                  <input type="checkbox" ng-model="cusctrl.customer.getWeeklyUpdates" id="customer-get-weekly-updates"/>
+                  <span>Get weekly updates</span>
+                </label>
+              </div>
+
+              <div class="row">
+                <label for="customer-send-analytics-data">
+                  <input type="checkbox" ng-model="cusctrl.customer.sendAnalyticsData" id="customer-send-analytics-data"/>
+                  <span>Send analytics data</span>
+                </label>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="columns large-12">
+              <label for="employees-number-list">Number of employees</label>
+              <ul id="employees-number-list" class="inline-list">
+                <li ng-repeat="employeeNumber in cusctrl.employeeNumbers">
+                  <label class="inline" for="customer-employeeNumbers-{{employeeNumber}}">
+                    <input type="radio" id="customer-emloyeeNumbers-{{employeeNumber}}" ng-model="cusctrl.customer.employeeNumber" value="{{employeeNumber}}"/>
+                    <span>{{employeeNumber}}</span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="columns large-12">
+              <label for="customer-comment">Comment</label>
+              <textarea ng-model="cusctrl.customer.comment" id="customer-comment" rows="50" cols="8"  pattern="[0-9]+" required></textarea>
+            </div>
+          </div>
+
+          <input type="submit" class="button small secondary" name="" value="OK" />
+      </form>
+
+      </div>
+
+      <div class="columns large-6">
+        <h3>Model</h3>
+        <div class=" model-pre-container">
+          <pre class="model-pre">
+            {{cusctrl.customer | json}}
+          </pre>
+        </div>
+      </div>
+
     </div>
 
     <script type="text/javascript" src="res/js/controllers.js"></script>

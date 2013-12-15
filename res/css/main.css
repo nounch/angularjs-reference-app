@@ -67,7 +67,7 @@ body > .row:nth-child(3) {
   border-radius: 3px;
 }
 
-.row > .columns[class*="large-12"] {
+html > .row > .columns[class*="large-12"] {
   background-color: #FFFFFF;
   padding: 5px;
   border: 1px solid #CACACA;

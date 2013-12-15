@@ -1,4 +1,52 @@
 /*************************************************************************/
+/* Routing view animation */
+/*************************************************************************/
+
+.view-frame.ng-enter {
+  -webkit-animation: viewFrameAnimation 350ms ease-out;
+  -moz-animation: viewFrameAnimation 350ms ease-out;
+  -o-animation: viewFrameAnimation 350ms ease-out;
+  animation: viewFrameAnimation 350ms ease-out;
+}
+
+@-webkit-keyframes viewFrameAnimation {
+  from {
+    transform: translate(50px, 0);
+    opacity: 0;
+  };
+  to { };
+}
+
+@-moz-keyframes viewFrameAnimation {
+  from {
+    transform: translate(50px, 0);
+    opacity: 0;
+  };
+  to { };
+}
+
+@-o-keyframes viewFrameAnimation {
+  from {
+    transform: translate(50px, 0);
+    opacity: 0;
+  };
+  to { };
+}
+
+@keyframes viewFrameAnimation {
+  from {
+    transform: translate(50px, 0);
+    opacity: 0;
+  };
+  to { };
+}
+
+.view-frame {
+  padding: 10px;
+}
+
+
+/*************************************************************************/
 /* AngularJS-Specific Animation */
 /*************************************************************************/
 
@@ -20,6 +68,7 @@
   opacity: 1;
 }
 
-/* .animated-item.ng-hide-remove-active, .animated-item.ng-hide-add-active { */
+/* .animated-item.ng-hide-remove-active, */
+/* .animated-item.ng-hide-add-active { */
 /*   opacity: 1; */
 /* } */

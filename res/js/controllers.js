@@ -116,4 +116,26 @@ angular.module('user', ['ngRoute', 'ngAnimate', 'infos', 'diverseService',
       });
       self.disableInlineEditor(id);
     };
+  }])
+  .controller('customerCtrl', ['$scope', function($scope) {
+    var self = this;
+    this.priceCathegories = ['beginner', 'advanced', 'intermediate',
+                             'expert'];
+    this.employeeNumbers = ['< 10', '< 50', '< 100', '< 200', '> 200'];
+    this.customer = {
+      'firstName': '',
+      'lasttName': '',
+      'company': '',
+      'country': '',
+      'phone': '',
+      'priceCathegory': '',
+      'employeeNumber': '',
+      'getWeeklyUpdates': false,
+      'sendAnalyticsData': false,
+      'comment': ''
+    };
+
+    this.submitCustomerData = function() {
+
+    };
   }]);
