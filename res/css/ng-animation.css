@@ -27,6 +27,9 @@
 
 @-webkit-keyframes viewFrameAnimation {
   from {
+    -webkit-transform: translate(50px, 0);
+    -moz-transform: translate(50px, 0);
+    -o-transform: translate(50px, 0);
     transform: translate(50px, 0);
     opacity: 0;
   };
@@ -35,6 +38,9 @@
 
 @-moz-keyframes viewFrameAnimation {
   from {
+    -webkit-transform: translate(50px, 0);
+    -moz-transform: translate(50px, 0);
+    -o-transform: translate(50px, 0);
     transform: translate(50px, 0);
     opacity: 0;
   };
@@ -43,6 +49,9 @@
 
 @-o-keyframes viewFrameAnimation {
   from {
+    -webkit-transform: translate(50px, 0);
+    -moz-transform: translate(50px, 0);
+    -o-transform: translate(50px, 0);
     transform: translate(50px, 0);
     opacity: 0;
   };
@@ -51,6 +60,9 @@
 
 @keyframes viewFrameAnimation {
   from {
+    -webkit-transform: translate(50px, 0);
+    -moz-transform: translate(50px, 0);
+    -o-transform: translate(50px, 0);
     transform: translate(50px, 0);
     opacity: 0;
   };

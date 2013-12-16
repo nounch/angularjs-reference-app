@@ -1,5 +1,5 @@
 angular.module('user', ['ngRoute', 'ngAnimate', 'infos', 'diverseService',
-                        'confidenceFilters',])
+                        'confidenceFilters', 'selfDocumenting'])
   .config(function($routeProvider) {
     $routeProvider
       .when('/settings', {
@@ -139,4 +139,32 @@ angular.module('user', ['ngRoute', 'ngAnimate', 'infos', 'diverseService',
     this.submitCustomerData = function() {
       self.showFlashMessage = true;
     };
+  }])
+  .controller('dataCtrl', ['$scope', function($scope) {
+    this.datapoints = [
+      {
+        'description': 'This is a datapoint.',
+        'value': 2828,
+      },
+      {
+        'description': 'This is just a datapoint',
+        'value': 289292,
+      },
+      {
+        'description': 'This is a random datapoint',
+        'value': 983,
+      },
+      {
+        'description': 'A random datapoint.',
+        'value': 983,
+      },
+      {
+        'description': 'A datapoint.',
+        'value': 992,
+      },
+      {
+        'description': 'Yet another datapoint.',
+        'value': 9399,
+      }
+    ]
   }]);

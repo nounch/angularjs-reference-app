@@ -17,6 +17,19 @@
 
   <body>
 
+    <div class="row">
+      <div class="columns large-12">
+        <selfdocumenting>
+          <h3>Info</h3>
+          <p>This element should be self-documenting.</p>
+          <h3>Datapoints</h3>
+          <ul ng-controller="dataCtrl as dctrl" class="square">
+            <li ng-repeat="datapoint in dctrl.datapoints">{{datapoint.value}}</li>
+          </ul>
+        </selfdocumenting>
+      </div>
+    </div>
+
     <div ng-controller="UserCtrl as user" class="row">
       <h1>Simple AngularJS Test</h1>
 
@@ -232,6 +245,7 @@
     <script type="text/javascript" src="res/js/infos.js"></script>
     <script type="text/javascript" src="res/js/diverseService.js"></script>
     <script type="text/javascript" src="res/js/filters.js"></script>
+    <script type="text/javascript" src="res/js/selfDocumenting.js"></script>
     <script type="text/javascript" src="res/js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="res/js/foundation.min.js"></script>
     <script type="text/javascript" src="res/js/foundation.abide.js"></script>

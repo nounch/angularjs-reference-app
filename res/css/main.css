@@ -61,11 +61,11 @@ body > .row > .columns[class*="large-6"] {
 
 /* Routing box */
 
-body > .row:nth-child(3) {
-  background: none repeat scroll 0 0 #EEEEEE;
-  padding: 3px;
-  border-radius: 3px;
-}
+/* body > .row:nth-child(3) { */
+/*   background: none repeat scroll 0 0 #EEEEEE; */
+/*   padding: 3px; */
+/*   border-radius: 3px; */
+/* } */
 
 html > .row > .columns[class*="large-12"] {
   background-color: #FFFFFF;
@@ -73,3 +73,27 @@ html > .row > .columns[class*="large-12"] {
   border: 1px solid #CACACA;
   border-radius: 3px;
 }
+
+
+/*************************************************************************/
+/* Self-documenting elements (directives) */
+/*************************************************************************/
+
+.self-documenting {
+  border: 3px solid #EEEEEE;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+
+.self-documenting .documentation {
+  background-color: #EEEEEE;
+  border-bottom: 3px solid #CFCFCF;
+  border-radius: 3px;
+  padding: 3px;
+}
+
+.self-documenting .documented-element {
+  padding: 3px;
+}
+
