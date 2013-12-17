@@ -17,19 +17,6 @@
 
   <body>
 
-    <div class="row">
-      <div class="columns large-12">
-        <selfdocumenting>
-          <h3>Info</h3>
-          <p>This element should be self-documenting.</p>
-          <h3>Datapoints</h3>
-          <ul ng-controller="dataCtrl as dctrl" class="square">
-            <li ng-repeat="datapoint in dctrl.datapoints">{{datapoint.value}}</li>
-          </ul>
-        </selfdocumenting>
-      </div>
-    </div>
-
     <div ng-controller="UserCtrl as user" class="row">
       <h1>Simple AngularJS Test</h1>
 
@@ -239,6 +226,39 @@
         </div>
       </div>
 
+    </div>
+
+    <div class="row">
+      <h1>Directives</h1>
+      <div class="columns large-12">
+
+        <div class="row">
+          <h2>Example 1 (selfdocumenting)</h2>
+          <selfdocumenting>
+            <h3>Info</h3>
+            <p>Foobar</p>
+            <ul>
+              <li>one</li>
+              <li>one</li>
+              <li>one</li>
+              <li>one</li>
+            </ul>
+          </selfdocumenting>
+        </div>
+
+        <div class="row">
+          <h2>Example 2 (selfdocumenting)</h2>
+          <selfdocumenting>
+            <h3>Info</h3>
+            <p>This element should be self-documenting.</p>
+            <h3>Datapoints</h3>
+            <ul ng-controller="dataCtrl as dctrl" class="square">
+              <li ng-repeat="datapoint in dctrl.datapoints">{{datapoint.value}}</li>
+            </ul>
+          </selfdocumenting>
+        </div>
+
+      </div>
     </div>
 
     <script type="text/javascript" src="res/js/controllers.js"></script>
