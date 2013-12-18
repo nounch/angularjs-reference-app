@@ -167,4 +167,35 @@ angular.module('user', ['ngRoute', 'ngAnimate', 'infos', 'diverseService',
         'value': 9399,
       }
     ]
+  }])
+  .controller('showsCtrl', ['$scope', function($scope) {
+    var self = this;
+    this.doShowForm = false;
+    this.shows = [
+      {
+        'name': 'Example Show',
+        'rating': 10
+      },
+      {
+        'name': 'Super Show',
+        'rating': 4
+      },
+      {
+        'name': 'Best Show Ever',
+        'rating': 8
+      },
+      {
+        'name': 'Daily Show',
+        'rating': 2
+      }
+    ];
+    this.newShow = { 'name': '', 'rating': 10 };
+    this.addNewShow = function() {
+      self.shows.unshift(self.newShow);
+      self.newShow = {};
+      self.doShowForm = false;
+    };
+    this.removeShow = function(index) {
+      self.shows.splice(index, 1);
+    };
   }]);

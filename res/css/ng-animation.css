@@ -1,4 +1,43 @@
 /*************************************************************************/
+/* Shows animation */
+/*************************************************************************/
+
+.tv-or-radio-show.ng-enter {
+  animation: tvOrRadioShowEnterAnimation 500ms ease-out;
+}
+
+@keyframes tvOrRadioShowEnterAnimation {
+  from {
+    background-color: #FFFF00;
+    opacity: 0;
+  }
+}
+
+.tv-or-radio-show.ng-leave {
+  animation: tvOrRadioShowLeaveAnimation 500ms ease-out;
+}
+
+@keyframes tvOrRadioShowLeaveAnimation {
+  from {
+    background-color: #FF9999;
+   }
+  to { opacity: 0; }
+}
+
+
+#add-new-show-form.ng-hide-remove {
+  display: block !important;
+  animation: addNewShowFormShowAnimation 500ms ease-out;
+}
+
+@keyframes addNewShowFormShowAnimation {
+  from {
+    opacity: 0;
+  }
+  to { display: block !important; opacity: 1; }
+}
+
+/*************************************************************************/
 /* Customer flash message animation */
 /*************************************************************************/
 
@@ -75,7 +114,7 @@
 
 
 /*************************************************************************/
-/* AngularJS-Specific Animation */
+/* AngularJS-specific animation */
 /*************************************************************************/
 
 /* .animated-item.ng-hide-add, */

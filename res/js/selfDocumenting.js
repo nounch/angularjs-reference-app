@@ -21,7 +21,7 @@ angular.module('selfDocumenting', [])
         $scope.elementsCount = $('.documented-element-' + self.elementId).html();
       },
       template: function($element, $attrs) {
-        console.log('ID: ' + this.elementId);  // DEBUG
+        // console.log('ID: ' + this.elementId);  // DEBUG
         return '<div class="self-documenting"><div class="documentation"><p>Number of elements in this self-documenting element: <pre>{{elementsCount}}</pre></p></div><div class="documented-element-' + this.elelentId + '" ng-transclude></div></div>'
       },
       replace: true

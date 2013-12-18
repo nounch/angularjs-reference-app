@@ -17,6 +17,53 @@
 
   <body>
 
+    <div ng-controller="showsCtrl as shctrl" class="row">
+      <h1>Simple List</h1>
+
+
+
+      <ul id="tv-or-radio-show-list" class="no-bullet">
+
+        <li>
+	  <div class="row">
+	    <div class="columns large-2 large-centered">
+              <a ng-hide="shctrl.doShowForm" ng-click="shctrl.doShowForm = true" href="#">Add show</a>
+	    </div>
+	  </div>
+        </li>
+
+        <li id="add-new-show-form" ng-show="shctrl.doShowForm">
+          <div class="row">
+            <form ng-cloak ng-submit="shctrl.addNewShow()" method="" action="">
+              <div class="columns large-1">
+                <input ng-model="shctrl.newShow.rating" type="text" name="add-show-rating-text-input" value="" placeholder="10" required/>
+              </div>
+              <div class="columns large-7">
+                <input ng-model="shctrl.newShow.name" type="text" name="add-show-name-text-input" value="" placeholder="Show name" required/>
+              </div>
+              <div class="columns large-2">
+                <input class="small secondary button" type="submit" name="add-show-name-submit-button" value="Add"/>
+              </div>
+            </form>
+          </div>
+        </li>
+
+        <li ng-cloak ng-repeat="show in shctrl.shows" class="tv-or-radio-show">
+          <div class="row">
+            <div class="columns large-1">
+              <p>{{show.rating}}</p>
+            </div>
+            <div class="columns large-9">
+              <p>{{show.name}}</p>
+            </div>
+            <div class="columns large-2">
+              <a href="#" ng-click="shctrl.removeShow($index);">Delete</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
     <div ng-controller="UserCtrl as user" class="row">
       <h1>Simple AngularJS Test</h1>
 
