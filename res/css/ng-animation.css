@@ -1,4 +1,25 @@
 /*************************************************************************/
+/* Header table animation */
+/*************************************************************************/
+
+.api-table.ng-hide-remove {
+  animation: apiTableShowAnimation 350ms ease-out;
+}
+
+@keyframes apiTableShowAnimation {
+  from { transform: translate(0, -10px); opacity: 0; }
+}
+
+.api-table-row.ng-enter, .api-table-row.ng-move {
+  animation: apiTableRowShowAnimation 700ms ease-out;
+}
+
+@keyframes apiTableRowShowAnimation {
+  from { opacity: 0; }
+}
+
+
+/*************************************************************************/
 /* Shows animation */
 /*************************************************************************/
 
@@ -20,7 +41,7 @@
 @keyframes tvOrRadioShowLeaveAnimation {
   from {
     background-color: #FF9999;
-   }
+  }
   to { opacity: 0; }
 }
 

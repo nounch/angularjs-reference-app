@@ -327,6 +327,45 @@
       </div>
     </div>
 
+    <div ng-controller="apiUsageCtrl as apictrl" class="row">
+      <div class="columns large-12">
+        <h1>External API Usage</h1>
+
+        <div class="row">
+
+          <div class="columns large-6">
+            <a ng-click="apictrl.getData()" class="small secondary button" href="#">GET</a>
+
+            <table class="api-table" ng-cloak ng-show="apictrl.headersRetrieved">
+              <tr>
+                <th>Field</th>
+                <th>Value</th>
+              </tr>
+              <tr class="api-table-row" ng-repeat="header in apictrl.retrievedHeaders">
+                <td>{{header.field}}</td>
+                <td>{{header.value}}</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="columns large-6">
+            <a ng-click="apictrl.postData()" class="small secondary button" href="#">POST</a>
+
+            <table class="api-table" ng-cloak ng-show="apictrl.postResponseRetrieved">
+              <tr>
+                <th>Field</th>
+                <th>Value</th>
+              </tr>
+              <tr class="api-table-row" ng-repeat="responseField in apictrl.postResponseData">
+                <td>{{responseField.field}}</td>
+                <td>{{responseField.value}}</td>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
     <script type="text/javascript" src="res/js/controllers.js"></script>
     <script type="text/javascript" src="res/js/infos.js"></script>

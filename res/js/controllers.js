@@ -50,12 +50,16 @@ angular.module('user', ['ngRoute', 'ngAnimate', 'infos', 'diverseService',
     var self = this;
     this.colors = [];
     this.retrieveColors = function() {
-      $http.get('res/json/colors.json').success(function(data) {
-        var keys = Object.keys(data);
-        for (var i = 0; i < keys.length; i++) {
-          self.colors[i] = data[keys[i]];
-        }
-      });
+      $http.get('res/json/colors.json').
+        success(function(data, status, headers, config) {
+          var keys = Object.keys(data);
+          for (var i = 0; i < keys.length; i++) {
+            self.colors[i] = data[keys[i]];
+          }
+        })
+        .error(function(data, status, headers, config) {
+          self.colors['error'] = "No colors found.";
+        });
     };
 
     this.selectedColor = '#FFFFFF';
@@ -253,5 +257,56 @@ angular.module('user', ['ngRoute', 'ngAnimate', 'infos', 'diverseService',
       } else {
         self.unHighlightScopes();
       }
+    };
+  }])
+  .controller('apiUsageCtrl', ['$scope', '$http', function($scope, $http) {
+    var self = this;
+    this.retrievedHeaders = [];
+    this.headersRetrieved = false;
+    this.getData = function() {
+      $http.get('http://headers.jsontest.com').success(function(
+        data, status, headers, config) {
+        var keys = Object.keys(data);
+        var key;
+        for (var i = 0; i < keys.length; i++) {
+          key = keys[i];
+          self.retrievedHeaders[i] = { 'field': key, 'value': data[key] };
+        }
+        self.headersRetrieved = true;
+      })
+    };
+
+    this.jsonPosted = false;
+    this.postResponseRetrieved = false;
+    this.postData = JSON.stringify({
+      'type': 'person',
+      'person': {
+        'first name': 'John',
+        'last name': 'Doe',
+        'age': 35,
+        'location': 'Washington'
+      }
+    });
+    this.postResponseData = [];
+    this.postResponse = [];
+    this.url = 'http://validate.jsontest.com/?json=' + self.postData;
+    this.postData = function() {
+      $http.post(self.url, null)
+        .success(function(
+          data, status, headers, config) {
+          var keys = Object.keys(data);
+          var key;
+          for (var i = 0; i < keys.length; i++) {
+            key = keys[i];
+            self.postResponseData[i] = { 'field': key, 'value':
+                                         data[key] };
+          }
+          self.postResponseRetrieved = true;
+        })
+        .error(function(data, status, headers, config) {
+          self.postResponseData[0] = { 'field': 'ERROR', 'value':
+                                       'No data retrieved.' };
+          self.postResponseRetrieved = true;
+        });
     };
   }]);
