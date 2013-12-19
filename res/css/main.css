@@ -1,4 +1,46 @@
 /*************************************************************************/
+/* Scope highlighting checkbox */
+/*************************************************************************/
+
+#scope-highlighting-checkbox {
+  border-left: 1px solid #CFCFCF;
+  border-bottom: 1px solid #CFCFCF;
+  border-radius: 0 0 0 5px;
+  position: fixed;
+  display: block;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-right: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#scope-highlighting-checkbox:hover {
+  background-color: #2BA6BC;
+  color: #FFFFFF;
+  transition: all 350ms ease-out;
+}
+
+#scope-highlighting-checkbox:focus {
+  background-color: #2BA6BC;
+  color: #FFFFFF;
+  transition: all 350ms ease-out;
+}
+
+#scope-highlighting-checkbox:active {
+  color: #121212;;
+  transition: all 350ms ease-out;
+}
+
+#scope-highlighting-checkbox:visited {
+  color: #121212;;
+  transition: all 350ms ease-out;
+}
+
+
+/*************************************************************************/
 /* TV/Radio show */
 /*************************************************************************/
 
@@ -58,6 +100,11 @@
   padding: 15px;
   background-color: #FFFFFF;
   border: 1px solid #CACACA;
+}
+
+.model-pre.small {
+  min-height: 150px;
+  max-height: 150px;
 }
 
 .model-pre:hover {

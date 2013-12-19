@@ -198,4 +198,60 @@ angular.module('user', ['ngRoute', 'ngAnimate', 'infos', 'diverseService',
     this.removeShow = function(index) {
       self.shows.splice(index, 1);
     };
+  }])
+  .controller('evalCtrl', ['$scope', function($scope) {
+    var self = this;
+    this.arbitraryJS
+    this.evaluatedJS;
+    this.evalJS = function() {
+      self.evaluatedJS = eval(self.arbitraryJS);
+    }
+  }])
+  .controller('scopeHighlighterCtrl', ['$scope', function($scope) {
+    // TODO: Most of the DOM-manipulating code in here should go to its own
+    // service or controller!
+
+    var self = this;
+    this.doHighlightScopes = false;
+    // List of arrays of this form:
+    //   [scopeElement<element>, oldStying<string>]
+    this.previousHighlightingStyle = [];
+
+    this.highlightScopes = function() {
+      var scopeElements = $('.ng-scope');
+      angular.forEach(scopeElements, function(element) {
+        // Save old styling
+        self.previousHighlightingStyle.push(
+          [$(element), {
+            'outline-color': $(element).css('outline-color'),
+            'outline-style': $(element).css('outline-style'),
+            'outline-width': $(element).css('outline-width'),
+            'outline-offset': $(element).css('outline-offset')
+          }])
+        // Apply styling
+        $(element).css({ 'outline': '1px solid #FF0000'});
+      })
+    };
+
+    this.unHighlightScopes = function() {
+      angular.forEach(self.previousHighlightingStyle, function(
+        elementAndValue) {
+        $(elementAndValue[0]).css(
+          { 'outline-color':elementAndValue[1]['outline-color']});
+        $(elementAndValue[0]).css(
+          { 'outline-style':elementAndValue[1]['outline-style']});
+        $(elementAndValue[0]).css(
+          { 'outline-width':elementAndValue[1]['outline-width']});
+        $(elementAndValue[0]).css(
+          { 'outline-offset':elementAndValue[1]['outline-offset']});
+      });
+    };
+
+    this.toggleScopeHighlighting = function() {
+      if (!self.doHighlightScopes) {
+        self.highlightScopes();
+      } else {
+        self.unHighlightScopes();
+      }
+    };
   }]);
