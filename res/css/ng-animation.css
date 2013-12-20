@@ -1,4 +1,26 @@
 /*************************************************************************/
+/* API test */
+/*************************************************************************/
+
+#api-response-pre.ng-hide-remove {
+  animation: apiResponsePreShowAnimation 350ms ease-out;
+}
+
+@keyframes apiResponsePreShowAnimation {
+  from { transform: translate(0, -10px); opacity: 0; }
+}
+
+#api-response-pre .model-pre.ng-move,
+#api-response-pre .model-pre.ng-enter {
+  animation: apiResponsePreContentAnimation 700ms ease-out;
+}
+
+@keyframes apiResponsePreContentAnimation {
+  from { opacity: 0; }
+}
+
+
+/*************************************************************************/
 /* Header table animation */
 /*************************************************************************/
 

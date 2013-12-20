@@ -260,20 +260,66 @@ angular.module('user', ['ngRoute', 'ngAnimate', 'infos', 'diverseService',
     };
   }])
   .controller('apiUsageCtrl', ['$scope', '$http', function($scope, $http) {
+    // $http.defaults.headers.get = { 'Origin': 'origin' };
+
     var self = this;
+
+    // this.getURL = '';
+    this.getURL = 'http://headers.jsontest.com/';  // DEBUG
+    this.retrievedData = '';
+    this.dataRetrieved = false;
+    this.responseStatus;
+    this.exampleURLs = [
+      'http://headers.jsontest.com/',
+      'http://date.jsontest.com/',
+      'http://time.jsontest.com/',
+      'http://md5.jsontest.com/?text=This is a test.',
+      'http://code.jsontest.com/',
+      'https://api.github.com/meta',
+      'https://api.github.com/search/issues?q=windows+label:bug+language:python+state:open&sort=created&order=asc',
+      'https://api.github.com/search/users/?q=tom',
+      'https://api.angel.co/1/users/2/roles',
+    ];
+    this.retrieveData = function(url) {
+      var url = url || this.getURL;
+      $http.get(url)
+        .success(function(data, status, headers, config) {
+          self.retrievedData = data;
+          self.responseStatus = status;
+          self.dataRetrieved = true;
+        })
+        .error(function(data, status, headers, config) {
+          this.retrievedData = "No data available.";
+          self.responseStatus = status;
+          self.dataRetrieved = true;
+        });
+    };
+
     this.retrievedHeaders = [];
     this.headersRetrieved = false;
+    this.config = {
+      headers: {
+        // 'X-Testing': 'testing'
+        // 'Accept': 'application/json, text/plain',
+      }
+    };
     this.getData = function() {
-      $http.get('http://headers.jsontest.com').success(function(
-        data, status, headers, config) {
-        var keys = Object.keys(data);
-        var key;
-        for (var i = 0; i < keys.length; i++) {
-          key = keys[i];
-          self.retrievedHeaders[i] = { 'field': key, 'value': data[key] };
-        }
-        self.headersRetrieved = true;
-      })
+      $http.get('http://headers.jsontest.com', self.config)
+        .success(function(data, status, headers, config) {
+          var keys = Object.keys(data);
+          var key;
+          for (var i = 0; i < keys.length; i++) {
+            key = keys[i];
+            self.retrievedHeaders[i] = { 'field': key, 'value':
+                                         data[key] };
+          }
+          self.headersRetrieved = true;
+        })
+        .error(function(data, status, headers, config) {
+          self.retrievedHeaders[0] = { 'field': 'ERROR', 'value':
+                                       'No data retrieved.' };
+          self.headersRetrieved = true;
+        });
     };
 
     this.jsonPosted = false;
