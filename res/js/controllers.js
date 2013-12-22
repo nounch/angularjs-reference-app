@@ -1,6 +1,36 @@
-angular.module('user', ['ngRoute', 'ngAnimate', 'infos', 'diverseService',
-                        'confidenceFilters', 'selfDocumenting'])
-  .config(function($routeProvider) {
+// angular.injector = (['routesService']);
+angular.module('user', [
+  'ngRoute',
+  'ngAnimate',
+  'infos',
+  'diverseService',
+  'confidenceFilters',
+  'selfDocumenting',
+])
+  .provider('internalRoutes', function() {
+    var self = this;
+    this.routes = [
+      {
+        description: 'API',
+        path: '/api',
+        controller: 'apiUsageCtrl',
+        templateUrl: 'partials/apiUsage.html',
+      },
+      {
+        description: 'User',
+        path: '/user',
+        controller: 'UserCtrl',
+        templateUrl: 'partials/user.html',
+      },
+    ];
+
+    this.$get = function() {
+      return function() {
+        return self.routes;
+      };
+    };
+  })
+  .config(function($routeProvider, internalRoutesProvider) {
     $routeProvider
       .when('/settings', {
         controller: 'SettingsCtrl',
@@ -13,7 +43,34 @@ angular.module('user', ['ngRoute', 'ngAnimate', 'infos', 'diverseService',
       .otherwise({
         redirectTo: '/'
       });
+
+    angular.forEach(internalRoutesProvider.routes, function(route) {
+      $routeProvider
+        .when(route.path, {
+          controller: route.controller,
+          templateUrl: route.templateUrl,
+        })
+    });
   })
+  .controller('RoutesCtrl', ['$scope', 'internalRoutes', '$location', function(
+    $scope, internalRoutes, $location) {
+    var self = this;
+
+    this.routes = internalRoutes();
+
+    this.subPage = '';
+    this.setSubPage = function(templateUrl) {
+      self.subPage = templateUrl;
+    };
+
+    $scope.$on('$routeChangeSuccess', function() {
+      angular.forEach(internalRoutes(), function(route) {
+        if (route.path == $location.path()) {
+          self.subPage = route.templateUrl;
+        }
+      });
+    });
+  }])
   .controller('UserCtrl', ['diverseInfo', function(diverseInfo) {
     var self = this;
     this.userName = '';
@@ -270,6 +327,10 @@ angular.module('user', ['ngRoute', 'ngAnimate', 'infos', 'diverseService',
     this.dataRetrieved = false;
     this.responseStatus;
     this.exampleURLs = [
+      'res/json/colors.json',
+      'res/json/animals.json',
+      'res/json/diverse.json',
+      'INVALID (404)',
       'http://headers.jsontest.com/',
       'http://date.jsontest.com/',
       'http://time.jsontest.com/',
@@ -289,7 +350,7 @@ angular.module('user', ['ngRoute', 'ngAnimate', 'infos', 'diverseService',
           self.dataRetrieved = true;
         })
         .error(function(data, status, headers, config) {
-          this.retrievedData = "No data available.";
+          self.retrievedData = "Error: No data available.";
           self.responseStatus = status;
           self.dataRetrieved = true;
         });
