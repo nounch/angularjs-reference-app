@@ -47,10 +47,11 @@ angular.module('user', [
     angular.forEach(internalRoutesProvider.routes, function(route) {
       $routeProvider
         .when(route.path, {
-          controller: route.controller,
-          templateUrl: route.templateUrl,
+          // controller: route.controller,
+          // templateUrl: route.templateUrl,
         })
-    });
+    })
+    ;
   })
   .controller('RoutesCtrl', ['$scope', 'internalRoutes', '$location', function(
     $scope, internalRoutes, $location) {
@@ -415,5 +416,26 @@ angular.module('user', [
                                        'No data retrieved.' };
           self.postResponseRetrieved = true;
         });
+    };
+  }])
+  .controller('WindowCtrl', ['$scope', '$window', function($scope,
+                                                           $window) {
+    var self = this;
+    this.windowObject = {};
+    this.doShowWindowObject = false;
+    this.doShowWindowObjectKeys = false;
+    this.windowObjectKeys = [];
+
+    this.serializeWindowObject = function() {
+      self.windowObjectKeys = Object.keys($window);
+      angular.forEach(self.windowObjectKeys, function(key) {
+        self.windowObject[key] = $window[key];
+      });
+      self.doShowWindowObject = true;
+    };
+
+    this.serializeWindowObjectKeys = function() {
+      self.windowObjectKeys = Object.keys($window);
+      self.doShowWindowObjectKeys = true;
     };
   }]);

@@ -84,6 +84,20 @@
   cursor: pointer;
 }
 
+/* Lists */
+
+.chevron li:before {
+  content: "›";
+  padding-right: 5px;
+}
+
+.chevron li:hover:before {
+  padding-right: 2.5px;
+  padding-left: 2.5px;
+  color: #AAAAAA;
+  transition: color 150ms ease-out;
+}
+
 /* API usage */
 
 #api-not-retrieved-placeholder {

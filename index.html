@@ -23,6 +23,40 @@
       <span>Highlight scopes</span>
     </label>
 
+
+    <div ng-controller="WindowCtrl as winctrl" class="row">
+      <div class="class large-12">
+        <h2><code>$window</code> service</h2>
+
+        <div ng-hide="winctrl.doShowWindowObject" class="columns large-3 large-centered">
+          <a ng-click="winctrl.serializeWindowObject();" class="small secondary button" href="#">Show me the <code>$window</code> object!</a>
+        </div>
+
+        <div ng-hide="winctrl.doShowWindowObjectKeys" class="columns large-3 large-centered">
+          <a ng-click="winctrl.serializeWindowObjectKeys();" class="small secondary button" href="#">Show me the <code>$window</code> object keys!</a>
+        </div>
+
+        <div class="row">
+          <div ng-show="winctrl.doShowWindowObject" ng-cloak class="columns large-12 large-centered">
+            <p><code>$window</code> object:</p>
+            <div id="window-object-pre"  class="model-pre-container">
+              <pre class="model-pre">{{winctrl.windowObject | json}}</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div ng-show="winctrl.doShowWindowObjectKeys" ng-cloak class="columns large-12 large-centered">
+            <p><code>$window</code> object keys:</p>
+            <div id="window-object-pre" class="model-pre-container">
+              <pre class="model-pre">{{winctrl.windowObjectKeys | json}}</pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <div ng-controller="RoutesCtrl as routesctrl" class="row">
 
       <div class="row">
@@ -73,7 +107,7 @@
             </div>
             <div class="columns large-4">
               <h4>Examples</h4>
-              <ul ng-cloak class="square">
+              <ul ng-cloak class="no-bullet chevron">
                 <li ng-repeat="url in apictrl.exampleURLs"><a ng-click="apictrl.retrieveData(url)" href="#">{{url}}</a></li>
               </ul>
             </div>
