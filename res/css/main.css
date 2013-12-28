@@ -48,11 +48,15 @@
   padding-top: 2.5px;
 }
 
-.tv-or-radio-show a {
+/* .show-show { */
+/*   display: block; */
+/* } */
+
+.show-delete {
   color: #CFCFCF;
 }
 
-.tv-or-radio-show a:hover {
+.show-delete:hover {
   color: #AFAFAF;
 }
 

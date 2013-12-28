@@ -233,6 +233,7 @@ angular.module('user', [
   .controller('showsCtrl', ['$scope', function($scope) {
     var self = this;
     this.doShowForm = false;
+    this.currentShowInfo;
     this.shows = [
       {
         'name': 'Example Show',
@@ -252,13 +253,19 @@ angular.module('user', [
       }
     ];
     this.newShow = { 'name': '', 'rating': 10 };
+
     this.addNewShow = function() {
       self.shows.unshift(self.newShow);
       self.newShow = {};
       self.doShowForm = false;
     };
+
     this.removeShow = function(index) {
       self.shows.splice(index, 1);
+    };
+
+    this.setCurrentShowInfo = function(show) {
+      self.currentShowInfo = show;
     };
   }])
   .controller('evalCtrl', ['$scope', function($scope) {

@@ -1,5 +1,5 @@
 angular.module('infos', [])
-  .factory('diverseInfo', function() {
+  .factory('diverseInfo', function diverseInfoFactory() {
     var blockedUserNames = [
       'Anonymous',
       'John Doe',
@@ -16,7 +16,7 @@ angular.module('infos', [])
       userNameGuidelines: userNameGuidelines,
     };
   })
-  .factory('routesService', function() {
+  .factory('routesService', function routesServiceFactory() {
     var routes = [
       {
         description: 'API',

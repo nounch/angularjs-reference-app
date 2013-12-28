@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="user">
   <head>
+    <base href="."><base/>
     <title>Simple AngularJS Test</title>
     <link rel="stylesheet" href="res/css/foundation.min.css" type="text/css" />
     <link rel="stylesheet" href="res/css/main.css" type="text/css" />
@@ -23,38 +24,59 @@
       <span>Highlight scopes</span>
     </label>
 
+    <div ng-controller="showsCtrl as shctrl" class="row">
+      <h1>Simple List</h1>
 
-    <div ng-controller="WindowCtrl as winctrl" class="row">
-      <div class="class large-12">
-        <h2><code>$window</code> service</h2>
+      <ul id="tv-or-radio-show-list" class="no-bullet">
 
-        <div ng-hide="winctrl.doShowWindowObject" class="columns large-3 large-centered">
-          <a ng-click="winctrl.serializeWindowObject();" class="small secondary button" href="#">Show me the <code>$window</code> object!</a>
-        </div>
-
-        <div ng-hide="winctrl.doShowWindowObjectKeys" class="columns large-3 large-centered">
-          <a ng-click="winctrl.serializeWindowObjectKeys();" class="small secondary button" href="#">Show me the <code>$window</code> object keys!</a>
-        </div>
-
-        <div class="row">
-          <div ng-show="winctrl.doShowWindowObject" ng-cloak class="columns large-12 large-centered">
-            <p><code>$window</code> object:</p>
-            <div id="window-object-pre"  class="model-pre-container">
-              <pre class="model-pre">{{winctrl.windowObject | json}}</pre>
+        <li>
+          <div class="row">
+            <div class="columns large-2 large-centered">
+              <a ng-hide="shctrl.doShowForm" ng-click="shctrl.doShowForm = true" href="#">Add show</a>
             </div>
           </div>
-        </div>
+        </li>
 
-        <div class="row">
-          <div ng-show="winctrl.doShowWindowObjectKeys" ng-cloak class="columns large-12 large-centered">
-            <p><code>$window</code> object keys:</p>
-            <div id="window-object-pre" class="model-pre-container">
-              <pre class="model-pre">{{winctrl.windowObjectKeys | json}}</pre>
+        <li id="add-new-show-form" ng-show="shctrl.doShowForm">
+          <div class="row">
+            <form ng-cloak ng-submit="shctrl.addNewShow()" method="" action="">
+              <div class="columns large-1">
+                <input ng-model="shctrl.newShow.rating" type="text" name="add-show-rating-text-input" value="" placeholder="10" required/>
+              </div>
+              <div class="columns large-7">
+                <input ng-model="shctrl.newShow.name" type="text" name="add-show-name-text-input" value="" placeholder="Show name" required/>
+              </div>
+              <div class="columns large-2">
+                <input class="small secondary button" type="submit" name="add-show-name-submit-button" value="Add"/>
+              </div>
+            </form>
+          </div>
+        </li>
+
+        <li ng-cloak ng-repeat="show in shctrl.shows" class="tv-or-radio-show">
+          <div class="row">
+            <div class="columns large-1">
+              <p>{{show.rating}}</p>
+            </div>
+            <div class="columns large-9">
+              <a  class="show-show" ng-click="shctrl.setCurrentShowInfo(show)" onclick="$('#show-info-modal').foundation('reveal', 'open')" href="#">{{show.name}}</a>
+            </div>
+            <div class="columns large-2">
+              <a class="show-delete" href="#" ng-click="shctrl.removeShow($index);">Delete</a>
             </div>
           </div>
+        </li>
+
+        <div id="show-info-modal" class="medium reveal-modal" data-reveal>
+          <h1>Show Info</h1>
+          <p>Here is some show info.</p>
+          <p>Name: {{shctrl.currentShowInfo.name}}</p>
+          <p>Rating: {{shctrl.currentShowInfo.rating}}</p>
+
+          <a class="close-reveal-modal">&#215;</a>
         </div>
 
-      </div>
+      </ul>
     </div>
 
     <div ng-controller="RoutesCtrl as routesctrl" class="row">
@@ -399,50 +421,6 @@
       </div>
     </div>
 
-    <div ng-controller="showsCtrl as shctrl" class="row">
-      <h1>Simple List</h1>
-
-      <ul id="tv-or-radio-show-list" class="no-bullet">
-
-        <li>
-          <div class="row">
-            <div class="columns large-2 large-centered">
-              <a ng-hide="shctrl.doShowForm" ng-click="shctrl.doShowForm = true" href="#">Add show</a>
-            </div>
-          </div>
-        </li>
-
-        <li id="add-new-show-form" ng-show="shctrl.doShowForm">
-          <div class="row">
-            <form ng-cloak ng-submit="shctrl.addNewShow()" method="" action="">
-              <div class="columns large-1">
-                <input ng-model="shctrl.newShow.rating" type="text" name="add-show-rating-text-input" value="" placeholder="10" required/>
-              </div>
-              <div class="columns large-7">
-                <input ng-model="shctrl.newShow.name" type="text" name="add-show-name-text-input" value="" placeholder="Show name" required/>
-              </div>
-              <div class="columns large-2">
-                <input class="small secondary button" type="submit" name="add-show-name-submit-button" value="Add"/>
-              </div>
-            </form>
-          </div>
-        </li>
-
-        <li ng-cloak ng-repeat="show in shctrl.shows" class="tv-or-radio-show">
-          <div class="row">
-            <div class="columns large-1">
-              <p>{{show.rating}}</p>
-            </div>
-            <div class="columns large-9">
-              <p>{{show.name}}</p>
-            </div>
-            <div class="columns large-2">
-              <a href="#" ng-click="shctrl.removeShow($index);">Delete</a>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
 
     <div ng-controller="evalCtrl as evctrl" class="row">
       <h1>Evaluate Arbitrary JavaScript</h1>
@@ -459,6 +437,39 @@
       </div>
     </div>
 
+    <div ng-controller="WindowCtrl as winctrl" class="row">
+      <div class="class large-12">
+        <h2><code>$window</code> service</h2>
+
+        <div ng-hide="winctrl.doShowWindowObject" class="columns large-3 large-centered">
+          <a ng-click="winctrl.serializeWindowObject();" class="small secondary button" href="#">Show me the <code>$window</code> object!</a>
+        </div>
+
+        <div ng-hide="winctrl.doShowWindowObjectKeys" class="columns large-3 large-centered">
+          <a ng-click="winctrl.serializeWindowObjectKeys();" class="small secondary button" href="#">Show me the <code>$window</code> object keys!</a>
+        </div>
+
+        <div class="row">
+          <div ng-show="winctrl.doShowWindowObject" ng-cloak class="columns large-12 large-centered">
+            <p><code>$window</code> object:</p>
+            <div id="window-object-pre"  class="model-pre-container">
+              <pre class="model-pre">{{winctrl.windowObject | json}}</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div ng-show="winctrl.doShowWindowObjectKeys" ng-cloak class="columns large-12 large-centered">
+            <p><code>$window</code> object keys:</p>
+            <div id="window-object-pre" class="model-pre-container">
+              <pre class="model-pre">{{winctrl.windowObjectKeys | json}}</pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
 
     <script type="text/javascript" src="res/js/controllers.js"></script>
     <script type="text/javascript" src="res/js/infos.js"></script>
@@ -469,5 +480,15 @@
     <script type="text/javascript" src="res/js/foundation.min.js"></script>
     <script type="text/javascript" src="res/js/foundation.abide.js"></script>
     <script type="text/javascript" src="res/js/foundation.tooltip.js"></script>
+    <script type="text/javascript" src="res/js/foundation.reveal.js"></script>
+
+    <script type="text/javascript">
+      $(document).foundation({
+	reveal: {
+	  animation_speed: 100,
+	  close_on_background_click: true,
+	}
+      });
+    </script>
   </body>
 </html>
