@@ -59,7 +59,7 @@
               <p>{{show.rating}}</p>
             </div>
             <div class="columns large-9">
-              <a  class="show-show" ng-click="shctrl.setCurrentShowInfo(show)" onclick="$('#show-info-modal').foundation('reveal', 'open')" href="#">{{show.name}}</a>
+              <a class="show-show" ng-click="shctrl.setCurrentShowInfo(show)" onclick="$('#show-info-modal').foundation('reveal', 'open')" href="#">{{show.name}}</a>
             </div>
             <div class="columns large-2">
               <a class="show-delete" href="#" ng-click="shctrl.removeShow($index);">Delete</a>
@@ -67,7 +67,7 @@
           </div>
         </li>
 
-        <div id="show-info-modal" class="medium reveal-modal" data-reveal>
+        <div id="show-info-modal" class="medium reveal-modal" data-reveal data-options="animation_speed: 0; close_on_background_click: true;">
           <h1>Show Info</h1>
           <p>Here is some show info.</p>
           <p>Name: {{shctrl.currentShowInfo.name}}</p>
@@ -483,11 +483,8 @@
     <script type="text/javascript" src="res/js/foundation.reveal.js"></script>
 
     <script type="text/javascript">
-      $(document).foundation({
-	reveal: {
-	  animation_speed: 100,
-	  close_on_background_click: true,
-	}
+      $(document).ready(function() {
+	$(document).foundation();
       });
     </script>
   </body>
